@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mansi's Clan – Funngro Project Feedback</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --brand: #6C63FF;
+      --white: #ffffff;
+      --text: #2d3748;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --radius: 14px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* --- Blue to Purple Animated Background --- */
+    .background {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background: radial-gradient(circle at 20% 20%, #3b82f6, transparent 60%),
+                  radial-gradient(circle at 80% 30%, #6c63ff, transparent 50%),
+                  radial-gradient(circle at 50% 80%, #9333ea, transparent 60%);
+      background-size: 200% 200%;
+      animation: bgMove 20s ease-in-out infinite;
+      filter: blur(90px);
+    }
+    @keyframes bgMove {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    /* Loader */
+    #loader {
+      position: fixed; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: #000; color: #fff; z-index: 9999;
+    }
+    #loader img {
+      width: 120px;            /* <-- no animation now */
+      filter: drop-shadow(0 0 12px rgba(0,255,255,0.4));
+    }
+    #loader h2 { margin-top: 10px; font-size: 20px; color: cyan; }
+
+    /* Navbar */
+    .nav {
+      width: 100%;
+      background: rgba(255,255,255,0.9);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08);
+      padding: 10px 18px;
+      display: flex; align-items: center; gap: 12px;
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav img { width: 42px; height: auto; }
+    .nav h1 {
+      font-size: 20px;
+      font-weight: 600;
+      display: inline-block;
+    }
+
+    /* Waving Gradient Text */
+    .wave span {
+      display: inline-block;
+      background: linear-gradient(90deg, #3b82f6, #6c63ff, #9333ea);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: wave 1.2s infinite ease-in-out;
+    }
+    .wave span:nth-child(2) { animation-delay: 0.1s; }
+    .wave span:nth-child(3) { animation-delay: 0.2s; }
+    .wave span:nth-child(4) { animation-delay: 0.3s; }
+    .wave span:nth-child(5) { animation-delay: 0.4s; }
+    .wave span:nth-child(6) { animation-delay: 0.5s; }
+    .wave span:nth-child(7) { animation-delay: 0.6s; }
+    .wave span:nth-child(8) { animation-delay: 0.7s; }
+    .wave span:nth-child(9) { animation-delay: 0.8s; }
+    .wave span:nth-child(10) { animation-delay: 0.9s; }
+    .wave span:nth-child(11) { animation-delay: 1.0s; }
+
+    @keyframes wave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Wrapper */
+    .wrapper { max-width: 760px; margin: 40px auto 80px; padding: 0 16px; }
+
+    /* Progress */
+    .progress-top {
+      display: flex; justify-content: space-between; align-items: center;
+      color: #fff; margin-bottom: 8px; font-size: 14px;
+    }
+    .progress {
+      width: 100%; height: 6px;
+      background: rgba(255,255,255,.35);
+      border-radius: 999px; overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .progress-bar {
+      height: 100%; width: 0%;
+      background: #fff;
+      transition: width .25s ease;
+    }
+
+    /* Card / Form */
+    .card {
+      background: #fff; border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .card-header {
+      background: linear-gradient(135deg, rgba(108,99,255,.08), rgba(108,99,255,.02));
+      padding: 28px 24px 18px; text-align: center;
+    }
+    .card-header h2 { color: var(--brand); font-size: 32px; margin-bottom: 6px; }
+    .card-header p { color: var(--muted); font-size: 14px; }
+    form { padding: 24px 24px 28px; }
+    label { display: block; font-size: 14px; font-weight: 500; margin-bottom: 6px; }
+    .req { color: #ef4444; }
+    input, textarea {
+      width: 100%; border: 1px solid var(--border); border-radius: 10px;
+      padding: 12px 14px; font-size: 15px; outline: none;
+      background: #fff; color: #111827;
+      transition: border .15s, box-shadow .15s;
+    }
+    input:focus, textarea:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px rgba(108,99,255,.1);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    .field { margin-bottom: 18px; }
+    button {
+      width: 100%; border: none; border-radius: 10px;
+      background: var(--brand); color: #fff;
+      padding: 12px 16px; font-size: 16px; font-weight: 600;
+      cursor: pointer; transition: opacity .2s, transform .05s;
+    }
+    button:hover { opacity: .95; }
+    button:active { transform: scale(.995); }
+    .success {
+      display: none; margin-top: 14px;
+      color: #059669; text-align: center; font-size: 14px; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <!-- Background -->
+  <div class="background"></div>
+
+  <!-- Loader -->
+  <div id="loader">
+    <img src="https://app.funngro.com/images/logo.png" alt="Funngro Logo" />
+    <h2>Loading...</h2>
+  </div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <img src="https://app.funngro.com/images/logo.png" alt="Funngro" />
+    <h1 class="wave">
+      <span>M</span><span>a</span><span>n</span><span>s</span><span>i</span>
+      <span>'</span><span>s</span> <span>C</span><span>l</span><span>a</span><span>n</span>
+    </h1>
+  </nav>
+
+  <main class="wrapper">
+    <!-- Progress -->
+    <div class="progress-top">
+      <span>Form Progress</span>
+      <span id="progress-text">0%</span>
+    </div>
+    <div class="progress">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+
+    <!-- Form -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Funngro</h2>
+        <p>Share your project feedback with us and help us grow together</p>
+      </div>
+      <form id="feedback-form" novalidate>
+        <div class="field">
+          <label for="name">Name <span class="req">*</span></label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required />
+        </div>
+        <div class="field">
+          <label for="reg">Funngro Registered Number <span class="req">*</span></label>
+          <input type="text" id="reg" name="reg" placeholder="Enter your Funngro registration number" required />
+        </div>
+        <div class="field">
+          <label for="project">Project Name <span class="req">*</span></label>
+          <input type="text" id="project" name="project" placeholder="Enter your project name" required />
+        </div>
+        <div class="field">
+          <label for="feedback">Feedback <span class="req">*</span></label>
+          <textarea id="feedback" name="feedback" placeholder="Share your detailed feedback here" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
+        <div class="success" id="success-msg">✅ Thanks! Your response is recorded. </div>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    // Loader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+      }, 2000);
+    });
+
+    // Progress bar
+    const form = document.getElementById('feedback-form');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const successMsg = document.getElementById('success-msg');
+    const requiredFields = Array.from(form.querySelectorAll('[required]'));
+
+    function calcProgress(){
+      const filled = requiredFields.filter(f => f.value.trim() !== '').length;
+      const percent = Math.round((filled / requiredFields.length) * 100);
+      progressBar.style.width = percent + '%';
+      progressText.textContent = percent + '%';
+    }
+    requiredFields.forEach(f => ['input','change'].forEach(e => f.addEventListener(e, calcProgress)));
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      successMsg.style.display = 'block';
+      form.reset();
+      calcProgress();
+      setTimeout(() => successMsg.style.display = 'none', 3000);
+    });
+
+    calcProgress();
+    form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (!form.checkValidity()) { form.reportValidity(); return; }
+
+  // Collect data
+  const data = {
+    name: document.getElementById('name').value,
+    reg: document.getElementById('reg').value,
+    project: document.getElementById('project').value,
+    feedback: document.getElementById('feedback').value
+  };
+
+  // Send data to Google Apps Script
+  fetch("https://script.google.com/macros/s/AKfycbyi_dxQtH821yqMqcraD1CWsBf4M-Sn0HgCS-M7ec8uW12OQh3NxpagwgxTT3tIRgKT6g/exec", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.text())
+  .then(res => {
+    successMsg.style.display = 'block';
+    form.reset();
+    calcProgress();
+    setTimeout(() => successMsg.style.display = 'none', 3000);
+  })
+  .catch(err => console.error('Error!', err.message));
+});
+
+  </script>
+</body>
+</html>
