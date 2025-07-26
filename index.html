@@ -15,18 +15,11 @@
       --radius: 14px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Poppins", sans-serif; }
-    body {
-      min-height: 100vh;
-      color: var(--text);
-      overflow-x: hidden;
-      position: relative;
-    }
+    body { min-height: 100vh; color: var(--text); overflow-x: hidden; position: relative; }
 
-    /* --- Blue to Purple Animated Background --- */
+    /* Blue → Purple animated blobs background */
     .background {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
+      position: fixed; inset: 0; z-index: -2;
       background: radial-gradient(circle at 20% 20%, #3b82f6, transparent 60%),
                   radial-gradient(circle at 80% 30%, #6c63ff, transparent 50%),
                   radial-gradient(circle at 50% 80%, #9333ea, transparent 60%);
@@ -42,41 +35,26 @@
 
     /* Loader */
     #loader {
-      position: fixed; inset: 0;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      background: #000; color: #fff; z-index: 9999;
+      position: fixed; inset: 0; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; background: #000; color: #fff; z-index: 9999;
     }
-    #loader img {
-      width: 120px;            /* <-- no animation now */
-      filter: drop-shadow(0 0 12px rgba(0,255,255,0.4));
-    }
+    #loader img { width: 120px; filter: drop-shadow(0 0 12px rgba(0,255,255,0.4)); }
     #loader h2 { margin-top: 10px; font-size: 20px; color: cyan; }
 
     /* Navbar */
     .nav {
-      width: 100%;
-      background: rgba(255,255,255,0.9);
-      -webkit-backdrop-filter: blur(10px);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 2px 6px rgba(0,0,0,.08);
-      padding: 10px 18px;
-      display: flex; align-items: center; gap: 12px;
-      position: sticky; top: 0; z-index: 10;
+      width: 100%; background: rgba(255,255,255,0.9); backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0,0,0,.08); padding: 10px 18px;
+      display: flex; align-items: center; gap: 12px; position: sticky; top: 0; z-index: 10;
     }
     .nav img { width: 42px; height: auto; }
-    .nav h1 {
-      font-size: 20px;
-      font-weight: 600;
-      display: inline-block;
-    }
+    .nav h1 { font-size: 20px; font-weight: 600; display: inline-block; }
 
     /* Waving Gradient Text */
     .wave span {
       display: inline-block;
       background: linear-gradient(90deg, #3b82f6, #6c63ff, #9333ea);
       -webkit-background-clip: text;
-      background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: wave 1.2s infinite ease-in-out;
     }
@@ -90,7 +68,6 @@
     .wave span:nth-child(9) { animation-delay: 0.8s; }
     .wave span:nth-child(10) { animation-delay: 0.9s; }
     .wave span:nth-child(11) { animation-delay: 1.0s; }
-
     @keyframes wave {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-6px); }
@@ -105,23 +82,13 @@
       color: #fff; margin-bottom: 8px; font-size: 14px;
     }
     .progress {
-      width: 100%; height: 6px;
-      background: rgba(255,255,255,.35);
-      border-radius: 999px; overflow: hidden;
-      margin-bottom: 24px;
+      width: 100%; height: 6px; background: rgba(255,255,255,.35);
+      border-radius: 999px; overflow: hidden; margin-bottom: 24px;
     }
-    .progress-bar {
-      height: 100%; width: 0%;
-      background: #fff;
-      transition: width .25s ease;
-    }
+    .progress-bar { height: 100%; width: 0%; background: #fff; transition: width .25s ease; }
 
     /* Card / Form */
-    .card {
-      background: #fff; border-radius: var(--radius);
-      box-shadow: 0 10px 30px rgba(0,0,0,.08);
-      overflow: hidden;
-    }
+    .card { background: #fff; border-radius: var(--radius); box-shadow: 0 10px 30px rgba(0,0,0,.08); overflow: hidden; }
     .card-header {
       background: linear-gradient(135deg, rgba(108,99,255,.08), rgba(108,99,255,.02));
       padding: 28px 24px 18px; text-align: center;
@@ -133,28 +100,25 @@
     .req { color: #ef4444; }
     input, textarea {
       width: 100%; border: 1px solid var(--border); border-radius: 10px;
-      padding: 12px 14px; font-size: 15px; outline: none;
-      background: #fff; color: #111827;
+      padding: 12px 14px; font-size: 15px; outline: none; background: #fff; color: #111827;
       transition: border .15s, box-shadow .15s;
     }
-    input:focus, textarea:focus {
-      border-color: var(--brand);
-      box-shadow: 0 0 0 3px rgba(108,99,255,.1);
-    }
+    input:focus, textarea:focus { border-color: var(--brand); box-shadow: 0 0 0 3px rgba(108,99,255,.1); }
     textarea { min-height: 120px; resize: vertical; }
     .field { margin-bottom: 18px; }
     button {
-      width: 100%; border: none; border-radius: 10px;
-      background: var(--brand); color: #fff;
-      padding: 12px 16px; font-size: 16px; font-weight: 600;
+      width: 100%; border: none; border-radius: 10px; background: var(--brand);
+      color: #fff; padding: 12px 16px; font-size: 16px; font-weight: 600;
       cursor: pointer; transition: opacity .2s, transform .05s;
     }
-    button:hover { opacity: .95; }
-    button:active { transform: scale(.995); }
-    .success {
-      display: none; margin-top: 14px;
-      color: #059669; text-align: center; font-size: 14px; font-weight: 500;
+    button[disabled] { opacity: .7; cursor: not-allowed; }
+    button:hover:not([disabled]) { opacity: .95; }
+    button:active:not([disabled]) { transform: scale(.995); }
+    .success, .error {
+      display: none; margin-top: 14px; text-align: center; font-size: 14px; font-weight: 500;
     }
+    .success { color: #059669; }
+    .error { color: #dc2626; }
   </style>
 </head>
 <body>
@@ -192,6 +156,7 @@
         <h2>Funngro</h2>
         <p>Share your project feedback with us and help us grow together</p>
       </div>
+
       <form id="feedback-form" novalidate>
         <div class="field">
           <label for="name">Name <span class="req">*</span></label>
@@ -209,8 +174,9 @@
           <label for="feedback">Feedback <span class="req">*</span></label>
           <textarea id="feedback" name="feedback" placeholder="Share your detailed feedback here" required></textarea>
         </div>
-        <button type="submit">Submit</button>
-        <div class="success" id="success-msg">✅ Thanks! Your response is recorded. </div>
+        <button type="submit" id="submit-btn">Submit</button>
+        <div class="success" id="success-msg">✅ Thanks! Your response is recorded.</div>
+        <div class="error" id="error-msg">❌ Oops! Something went wrong. Try again.</div>
       </form>
     </div>
   </main>
@@ -228,6 +194,8 @@
     const progressBar = document.getElementById('progress-bar');
     const progressText = document.getElementById('progress-text');
     const successMsg = document.getElementById('success-msg');
+    const errorMsg = document.getElementById('error-msg');
+    const submitBtn = document.getElementById('submit-btn');
     const requiredFields = Array.from(form.querySelectorAll('[required]'));
 
     function calcProgress(){
@@ -237,45 +205,54 @@
       progressText.textContent = percent + '%';
     }
     requiredFields.forEach(f => ['input','change'].forEach(e => f.addEventListener(e, calcProgress)));
+    calcProgress();
 
-    form.addEventListener('submit', e => {
+    // Google Apps Script URL
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyi_dxQtH821yqMqcraD1CWsBf4M-Sn0HgCS-M7ec8uW12OQh3NxpagwgxTT3tIRgKT6g/exec";
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      successMsg.style.display = 'block';
-      form.reset();
-      calcProgress();
-      setTimeout(() => successMsg.style.display = 'none', 3000);
+
+      successMsg.style.display = 'none';
+      errorMsg.style.display = 'none';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      const data = {
+        name: document.getElementById('name').value,
+        reg: document.getElementById('reg').value,
+        project: document.getElementById('project').value,
+        feedback: document.getElementById('feedback').value
+      };
+
+      try {
+        const res = await fetch(SCRIPT_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const text = await res.text();
+
+        if (res.ok) {
+          successMsg.style.display = 'block';
+          form.reset();
+          calcProgress();
+        } else {
+          throw new Error(text || 'Unknown error');
+        }
+      } catch (err) {
+        console.error(err);
+        errorMsg.style.display = 'block';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit';
+        setTimeout(() => {
+          successMsg.style.display = 'none';
+          errorMsg.style.display = 'none';
+        }, 4000);
+      }
     });
-
-    calcProgress();
-    form.addEventListener('submit', e => {
-  e.preventDefault();
-  if (!form.checkValidity()) { form.reportValidity(); return; }
-
-  // Collect data
-  const data = {
-    name: document.getElementById('name').value,
-    reg: document.getElementById('reg').value,
-    project: document.getElementById('project').value,
-    feedback: document.getElementById('feedback').value
-  };
-
-  // Send data to Google Apps Script
-  fetch("https://script.google.com/macros/s/AKfycbyi_dxQtH821yqMqcraD1CWsBf4M-Sn0HgCS-M7ec8uW12OQh3NxpagwgxTT3tIRgKT6g/exec", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.text())
-  .then(res => {
-    successMsg.style.display = 'block';
-    form.reset();
-    calcProgress();
-    setTimeout(() => successMsg.style.display = 'none', 3000);
-  })
-  .catch(err => console.error('Error!', err.message));
-});
-
   </script>
 </body>
 </html>
