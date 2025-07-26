@@ -227,20 +227,17 @@
       };
 
       try {
-        const res = await fetch(SCRIPT_URL, {
+        await fetch(SCRIPT_URL, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
+          mode: "no-cors"   // <<< important
         });
-        const text = await res.text();
 
-        if (res.ok) {
-          successMsg.style.display = 'block';
-          form.reset();
-          calcProgress();
-        } else {
-          throw new Error(text || 'Unknown error');
-        }
+        // We cannot read the response in no-cors mode; assume success if no error thrown
+        successMsg.style.display = 'block';
+        form.reset();
+        calcProgress();
       } catch (err) {
         console.error(err);
         errorMsg.style.display = 'block';
